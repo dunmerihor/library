@@ -1,0 +1,51 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+.lib-container {
+    background-color: #f4f4f5;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 80px 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.logo {
+    background-color: #fafafa;
+    font-size: 40px;
+    font-weight: 900;
+    padding: 10px 30px;
+    height: 80px;
+    box-sizing: border-box;
+    justify-self: stretch;
+}
+
+.books {
+    min-height: calc(100vh - 80px);
+}
+
+.add-book {
+    background-color: #e4e4e7;
+    font-size: 35px;
+    font-weight: 900;
+    height: 70px;
+    width: 700px;
+    border: 3px solid #a1a1aa;
+    border-radius: 35px / 50%;
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-book:hover {
+    background-color: #d4d4d8;
+}
