@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Library</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
@@ -17,11 +17,44 @@
         <div class="logo">Library</div>
 
         <ul class="books">
-            <li class="add-book">+ Add Book</li>
+            <li class="book">The Hobbit by J.R.R. Tolkien, 295 pages, not read yet.</li>
+
+            <li class="add-book" onclick="showForm()">+ Add Book</li>
         </ul>
 
     </div> 
     
+    
+    <div class="hidden-background">
+
+        <form class="book-form">
+            
+            <div>
+                <label for="book">Book</label>
+                <input type="text" name="book" id="book" required>
+            </div>
+
+            <div>
+                <label for="author">Author</label>
+                <input type="text" name="author" id="author" required>
+            </div>
+
+            <div>
+                <label for="pages">Pages</label>
+                <input type="text" name="author" id="author" required>
+            </div>
+
+            <div class="checkbox-container">
+                <input type="checkbox" name="read" id="read">
+                <label for="read">Have you read this book?</label>
+            </div>
+            
+            <button id="add-book-btn">Add</button>
+            
+        </form>
+
+    </div>
+
 </body>
 
 </html>
