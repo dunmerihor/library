@@ -11,8 +11,7 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = function() {
-    return (this.read === 'on') ? `${this.title} by ${this.author}, ${this.pages} pages, read` :
-     `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
+    return `${this.title} by ${this.author}, ${this.pages} pages, `;
 }
 
 function showForm() {
@@ -34,18 +33,24 @@ function refreshBookList() {
     const bookList = document.querySelector('ul.books');
     for (let i = 0; i < myBooks.length; i++) {
         const bookItem = document.createElement('div');
+        const bookInfoContainer = document.createElement('div');
         bookItem.classList.add('book-item');
 
         const deleteButton = document.createElement('button');
         const bookInfo = document.createElement('span');
-        
-        bookInfo.textContent = myBooks[i].info();
+        const readStatus = document.createElement('span');
 
+        readStatus.textContent = myBooks[i].read ? ' read' : ' not read yet';
+        readStatus.id = `${i}`;
+        readStatus.addEventListener('click', e => changeReadStatus(e.target.id));
+        bookInfo.textContent = myBooks[i].info();
         deleteButton.textContent = 'x';
         deleteButton.id = `${i}`;
         deleteButton.addEventListener('click', e => deleteBook(e.target.id));
 
-        bookItem.appendChild(bookInfo);
+        bookInfoContainer.appendChild(bookInfo);
+        bookInfoContainer.appendChild(readStatus);
+        bookItem.appendChild(bookInfoContainer);
         bookItem.appendChild(deleteButton);
         bookList.insertBefore(bookItem, bookList.firstChild);
     }
@@ -56,11 +61,16 @@ function deleteBook(id) {
     refreshBookList();
 }
 
+function changeReadStatus(id) {
+    myBooks[id].read = myBooks[id].read ? false : true;
+    refreshBookList();
+}
+
 function addBookToLibrary() {
     const title = document.querySelector('input[name="book"]').value;
     const author = document.querySelector('input[name="author"]').value;
     const pages = document.querySelector('input[name="pages"]').value;
-    const read = document.querySelector('input[name="read"]').value;
+    const read = document.querySelector('input[name="read"]').checked;
     
     const newBook = new Book(title, author, pages, read); 
     myBooks.push(newBook);

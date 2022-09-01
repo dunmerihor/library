@@ -22,7 +22,7 @@ ul {
 }
 
 .logo {
-    background-color: #fafafa;
+    background-color: #d4d4d8;
     font-size: 40px;
     font-weight: 700;
     padding: 10px 30px;
@@ -163,4 +163,5 @@ div > input {
     color: red;
     height: 1em;
     width: 1em;
+    justify-self: flex-end;
 }
