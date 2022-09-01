@@ -11,7 +11,7 @@ function Book(title, author, pages, read) {
 }
 
 Book.prototype.info = function() {
-    return this.read ? `${this.title} by ${this.author}, ${this.pages} pages, read` :
+    return (this.read === 'on') ? `${this.title} by ${this.author}, ${this.pages} pages, read` :
      `${this.title} by ${this.author}, ${this.pages} pages, not read yet`;
 }
 
@@ -32,12 +32,28 @@ function refreshBookList() {
     oldBookList.forEach(elem => elem.remove());
 
     const bookList = document.querySelector('ul.books');
-    for (book of myBooks) {
+    for (let i = 0; i < myBooks.length; i++) {
         const bookItem = document.createElement('div');
         bookItem.classList.add('book-item');
-        bookItem.textContent = book.info();
+
+        const deleteButton = document.createElement('button');
+        const bookInfo = document.createElement('span');
+        
+        bookInfo.textContent = myBooks[i].info();
+
+        deleteButton.textContent = 'x';
+        deleteButton.id = `${i}`;
+        deleteButton.addEventListener('click', e => deleteBook(e.target.id));
+
+        bookItem.appendChild(bookInfo);
+        bookItem.appendChild(deleteButton);
         bookList.insertBefore(bookItem, bookList.firstChild);
     }
+}
+
+function deleteBook(id) {
+    myBooks.splice(Number(id), 1); 
+    refreshBookList();
 }
 
 function addBookToLibrary() {
@@ -45,9 +61,9 @@ function addBookToLibrary() {
     const author = document.querySelector('input[name="author"]').value;
     const pages = document.querySelector('input[name="pages"]').value;
     const read = document.querySelector('input[name="read"]').value;
-
-    const newBook = new Book(title, author, pages, read);
+    
+    const newBook = new Book(title, author, pages, read); 
     myBooks.push(newBook);
     refreshBookList();
     hideForm();
-}
+} 
