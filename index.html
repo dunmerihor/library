@@ -17,15 +17,13 @@
         <div class="logo">Library</div>
 
         <ul class="books">
-            <li class="book">The Hobbit by J.R.R. Tolkien, 295 pages, not read yet.</li>
-
             <li class="add-book" onclick="showForm()">+ Add Book</li>
         </ul>
 
     </div> 
     
     
-    <div class="hidden-background">
+    <div class="hidden-background" onclick="hideForm()">
 
         <form class="book-form">
             
@@ -41,7 +39,7 @@
 
             <div>
                 <label for="pages">Pages</label>
-                <input type="text" name="author" id="author" required>
+                <input type="text" name="pages" id="pages" required>
             </div>
 
             <div class="checkbox-container">
@@ -49,7 +47,7 @@
                 <label for="read">Have you read this book?</label>
             </div>
             
-            <button id="add-book-btn">Add</button>
+            <button type="button" id="add-book-btn" onclick="addBookToLibrary()">Add</button>
             
         </form>
 
